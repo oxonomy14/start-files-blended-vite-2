@@ -1,10 +1,14 @@
 import { FiSearch } from 'react-icons/fi';
 import style from '../Form/Form.module.css';
 
-const Form = ({ addNewTodo, inputValue, setInputValue }) => {
+const Form = ({ addNewTodo, inputValue, setInputValue, getQuery }) => {
   const handleSubmit = e => {
     e.preventDefault(); // Запобігає перезавантаженню сторінки
-    addNewTodo(inputValue); // Передаємо значення в Todos.js
+    if (getQuery) {
+      getQuery(inputValue); // викликається при пошуку фотографій
+    } else if (addNewTodo) {
+      addNewTodo(inputValue); // викликається при додаванні нової задачі
+    }
   };
 
   return (
