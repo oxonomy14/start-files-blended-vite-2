@@ -1,12 +1,13 @@
 import styles from './PhotosGalleryItem.module.css';
 
-const PhotosGalleryItem = ({ src, alt, avg_color }) => {
+const PhotosGalleryItem = ({ src, alt, avg_color, onClick }) => {
   return (
     <div
       className={styles.thumb}
       style={{ backgroundColor: avg_color, borderColor: avg_color }}
+      onClick={onClick}
     >
-      <img src={src.large} alt={alt} />
+      <img src={src.small} alt={alt} />
     </div>
   );
 };

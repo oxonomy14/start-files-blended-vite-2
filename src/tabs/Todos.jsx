@@ -1,33 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 //import Text from '../components/Text/Text';
 import Form from '../components/Form/Form';
 import TodoList from '../components/TodoList/TodoList';
 import todosDB from '../todos.json';
 import EditForm from '../components/EditForm/EditForm';
 import { nanoid } from 'nanoid';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const Todos = () => {
-  const [todos, setTodos] = useState(
+  /*const [todos, setTodos] = useState(
     () => JSON.parse(localStorage.getItem('todos')) ?? todosDB
-  );
-  const [inputValue, setInputValue] = useState('');
+  );*/
+
+  const [todos, setTodos] = useLocalStorage('todos', todosDB);
 
   const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
 
-  useEffect(() => {
+  /*useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+  }, [todos]);*/
 
   // Додаємо todo
 
   const addNewTodo = inputValue => {
-    if (!inputValue.trim()) {
-      window.alert('Дайте назву задачі');
-
-      return;
-    }
-
     if (!inputValue.trim() || fintTodo(inputValue)) {
       window.alert('Така назва вже є');
       return;
@@ -42,7 +38,6 @@ const Todos = () => {
     };
 
     setTodos([...todos, newTodo]);
-    setInputValue('');
   };
 
   // Функція видалення
@@ -94,11 +89,7 @@ const Todos = () => {
           updateTodo={updateTodo}
         />
       ) : (
-        <Form
-          addNewTodo={addNewTodo}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-        />
+        <Form onSubmit={addNewTodo} />
       )}
       {todos.length > 0 ? (
         <TodoList

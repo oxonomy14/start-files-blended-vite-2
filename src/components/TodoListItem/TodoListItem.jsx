@@ -2,13 +2,13 @@ import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
 import style from './TodoListItem.module.css';
 import Text from '../Text/Text';
 
-const TodoListItem = ({ todo, onDelete, onEdit }) => {
+const TodoListItem = ({ todo, index, onDelete, onEdit }) => {
   return (
     <>
       <h3>TodoListItem</h3>
       <div className={style.box}>
         <Text textAlign="center" marginBottom="20">
-          TODO #{todo.id}
+          TODO #{index + 1}
         </Text>
         <Text>{todo.text}</Text>
         <button

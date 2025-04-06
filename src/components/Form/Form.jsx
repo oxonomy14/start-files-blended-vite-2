@@ -1,14 +1,18 @@
 import { FiSearch } from 'react-icons/fi';
 import style from '../Form/Form.module.css';
+import { useState } from 'react';
 
-const Form = ({ addNewTodo, inputValue, setInputValue, getQuery }) => {
+const Form = ({ onSubmit }) => {
+  const [inputValue, setInputValue] = useState('');
   const handleSubmit = e => {
     e.preventDefault(); // Запобігає перезавантаженню сторінки
-    if (getQuery) {
-      getQuery(inputValue); // викликається при пошуку фотографій
-    } else if (addNewTodo) {
-      addNewTodo(inputValue); // викликається при додаванні нової задачі
+    if (!inputValue.trim()) {
+      window.alert('Дайте назву задачі');
+
+      return;
     }
+    onSubmit(inputValue);
+    setInputValue('');
   };
 
   return (

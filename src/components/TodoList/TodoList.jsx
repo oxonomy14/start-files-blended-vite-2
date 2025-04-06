@@ -7,9 +7,14 @@ const TodoList = ({ todos, onDelete, onEdit }) => {
     <>
       <h3>TodoList</h3>
       <Grid>
-        {todos.map(todo => (
+        {todos.map((todo, index) => (
           <GridItem key={todo.id}>
-            <TodoListItem todo={todo} onDelete={onDelete} onEdit={onEdit} />
+            <TodoListItem
+              todo={todo}
+              index={index}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
           </GridItem>
         ))}
       </Grid>

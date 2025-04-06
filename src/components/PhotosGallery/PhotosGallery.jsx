@@ -1,9 +1,8 @@
-import Button from '../Button/Button';
 import Grid from '../Grid/Grid';
 import GridItem from '../GridItem/GridItem';
 import PhotosGalleryItem from '../PhotosGalleryItem/PhotosGalleryItem';
 
-const PhotosGallery = ({ images, onLoadMore, page }) => {
+const PhotosGallery = ({ images, onImageClick }) => {
   return (
     <>
       <h3>PhotosGallery</h3>
@@ -14,15 +13,12 @@ const PhotosGallery = ({ images, onLoadMore, page }) => {
               src={item.src}
               alt={item.alt}
               avg_color={item.avg_color}
+              onClick={() => onImageClick(item)}
+              style={{ cursor: 'pointer' }}
             />
           </GridItem>
         ))}
       </Grid>
-      {page > 0 && (
-        <Button onClick={onLoadMore} type="button">
-          Load More
-        </Button>
-      )}
     </>
   );
 };
